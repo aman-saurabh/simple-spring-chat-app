@@ -68,7 +68,7 @@ function send(event) {
 	event.preventDefault();
 }
 function leave(){
-	stompClient.send("/app/chat.register",
+	stompClient.send("/app/chat.send",
 			{},
 			JSON.stringify({sender: username, type: 'LEAVE'})
 	)
@@ -128,7 +128,7 @@ messageForm.addEventListener('submit', send, true)
 window.addEventListener('beforeunload', function (e) {
 	leave()
 	// Cancel the event
-	// e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+	//e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
 	// Chrome requires returnValue to be set
-	// e.returnValue = '';
+	//e.returnValue = '';
 });

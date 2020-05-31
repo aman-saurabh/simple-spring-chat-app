@@ -18,8 +18,13 @@ public class ChatAppConfig implements WebSocketMessageBrokerConfigurer{	//To ove
 	
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {	//To enable configurer message broker
-		registry.enableSimpleBroker("/topic");
 		registry.setApplicationDestinationPrefixes("/app");
+		// registry.enableSimpleBroker("/topic"); //Enable it if you don't want to use RabbitMq and to use default message-broker
+		registry.enableStompBrokerRelay("/topic")
+        .setRelayHost("localhost")
+        .setRelayPort(61613)
+        .setClientLogin("admin")
+        .setClientPasscode("prty@rty34p0");
 		//Default configuration provided by spring - WebSocketMessageBrokerConfigurer.super.configureMessageBroker(registry);
 	}	
 }
